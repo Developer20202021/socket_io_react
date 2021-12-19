@@ -1,23 +1,83 @@
 import logo from './logo.svg';
 import './App.css';
 
+
+import { useEffect, useRef, useState } from 'react';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import Home from './Componets/Home/Home';
+import Socket from './Componets/Socket/Socket';
+import SocketConnet from './Componets/SocketConnect/SocketConnect';
+import VoiceTest from './Componets/voicetest.js/VoiceTest';
+
+
 function App() {
+ 
+  const {socket} = SocketConnet()
+
+  
+  
+
+
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+      <BrowserRouter>
+
+      <Switch>
+
+
+        <Route path='/voice'>
+         <VoiceTest></VoiceTest>
+        </Route>
+
+
+        <Route exact path='/home'>
+          <Home value={socket}> </Home>
+
+        </Route>
+
+
+        <Route path='/login'>
+          <Socket></Socket>
+        </Route>
+
+
+
+
+
+
+
+
+
+
+
+      </Switch>
+
+
+
+
+
+
+
+
+
+
+
+      </BrowserRouter>
+    
+
+     
+
+
+
+
+
+
+
+
+
     </div>
   );
 }
